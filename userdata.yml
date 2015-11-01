@@ -11,7 +11,7 @@ packages:
 
 runcmd:
     - pip install requirements.txt
-    - sudo git clone https://github.com/ekling/cloudproject.git /home/ubuntu/project
+    - sudo git clone https://github.com/saro6971/cloudDb.git /home/ubuntu/project
     - cd /home/ubuntu/project
     - pip install Flask
     - pip install celery
