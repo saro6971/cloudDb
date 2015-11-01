@@ -1,0 +1,22 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+packages:
+    - git
+    - python-pip
+    - rabbitmq-server
+    - python-swiftclient
+
+runcmd:
+    - pip install requirements.txt
+    - pip install python-swiftclient
+    - git clone https://github.com/ekling/cloudproject.git /home/ubuntu/project
+    - cd /home/ubuntu/project
+    - mkdir msh
+    - mkdir geo
+    - export C_FORCE_ROOT="true"
+    - export LC_ALL="en_US.utf-8"
+    - export BROKER_IP="130.238.29.120"
+    - celery worker -A airfoil --concurrency=1
