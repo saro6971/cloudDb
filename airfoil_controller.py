@@ -7,9 +7,7 @@ from flask import Flask, jsonify, request, redirect, render_template
 
 app = Flask(__name__)
 
-for filename in os.listdir('/home/ubuntu/project/'):
-    if not filename.endswith(".db"):
-        db = pickledb.load('Completed.db',False)
+db = pickledb.load('Completed.db',False)
 
 
 def divide_input(start, stop, steps):
@@ -75,7 +73,7 @@ def forms():
     msh_input = [int(angle_min), int(angle_max), int(num_angles), int(nodes), int(refinement)]
     airfoil_input = [int(samples), float(viscosity), int(speed), int(time)]
     
-    if db.get(str(msh_input)+str(airfoil_input)) == "None":
+    if db.get(str(msh_input)+str(airfoil_input)) is None:
         res = calc_airfoil(msh_input, airfoil_input)
         db.set(str(msh_input)+str(airfoil_input),res)
     else:
